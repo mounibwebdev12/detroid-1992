@@ -30,3 +30,23 @@ function animate() {
   renderer.render(scene, camera);
 }
 animate();
+// Assuming the model has animations (like walk/idle)
+const mixer = new THREE.AnimationMixer(gltf.scene);
+
+// Loop through and add each animation
+gltf.animations.forEach((clip) => {
+  mixer.clipAction(clip).play();
+});
+
+const clock = new THREE.Clock();
+
+function animate() {
+  requestAnimationFrame(animate);
+
+  // Update animations
+  const delta = clock.getDelta();
+  mixer.update(delta);
+
+  renderer.render(scene, camera);
+}
+animate();
