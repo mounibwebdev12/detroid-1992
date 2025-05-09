@@ -50,3 +50,39 @@ function animate() {
   renderer.render(scene, camera);
 }
 animate();
+let moveForward = false, moveBackward = false, moveLeft = false, moveRight = false;
+
+document.addEventListener('keydown', (event) => {
+  switch (event.code) {
+    case 'KeyW': moveForward = true; break;
+    case 'KeyS': moveBackward = true; break;
+    case 'KeyA': moveLeft = true; break;
+    case 'KeyD': moveRight = true; break;
+  }
+});
+
+document.addEventListener('keyup', (event) => {
+  switch (event.code) {
+    case 'KeyW': moveForward = false; break;
+    case 'KeyS': moveBackward = false; break;
+    case 'KeyA': moveLeft = false; break;
+    case 'KeyD': moveRight = false; break;
+  }
+});
+
+function moveCharacter() {
+  const speed = 0.1;
+  if (moveForward) camera.position.z -= speed;
+  if (moveBackward) camera.position.z += speed;
+  if (moveLeft) camera.position.x -= speed;
+  if (moveRight) camera.position.x += speed;
+}
+
+function animate() {
+  requestAnimationFrame(animate);
+
+  moveCharacter();
+
+  renderer.render(scene, camera);
+}
+animate();
