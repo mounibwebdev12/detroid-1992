@@ -115,4 +115,72 @@ function animate() {
 }
 
 animate();
+// Ensure scene is initialized
+const scene = new THREE.Scene();
+
+// Initialize the camera (ensure it's positioned properly)
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.set(0, 5, 30);  // Position camera higher to see the scene
+
+// Create the renderer and attach to the DOM
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// Create a simple cube (basic object to check)
+const geometry = new THREE.BoxGeometry(1, 1, 1);
+const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+
+// Set up a simple light (optional, helps with visibility)
+const light = new THREE.AmbientLight(0x404040);  // Ambient light for general visibility
+scene.add(light);
+
+// Add a rotating cube to see if the scene is rendering
+function animate() {
+    requestAnimationFrame(animate);
+
+    // Rotate cube to see it
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+
+    // Render the scene
+    renderer.render(scene, camera);
+}
+
+animate();
+// 1. Initialize the scene
+const scene = new THREE.Scene();
+
+// 2. Set up the camera (make sure it's set to a good position to view objects)
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.set(0, 5, 30);  // Set camera at a higher position to see the scene properly
+
+// 3. Create the renderer and append it to the DOM
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// 4. Create a basic object (a cube for testing purposes)
+const geometry = new THREE.BoxGeometry(1, 1, 1);  // Cube with size 1x1x1
+const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });  // Green color
+const cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+
+// 5. Add a simple light (optional, but helps in visualizing objects better)
+const light = new THREE.AmbientLight(0x404040);  // Ambient light
+scene.add(light);
+
+// 6. Animation loop (to rotate the cube and render the scene)
+function animate() {
+    requestAnimationFrame(animate);  // Keep looping the animation
+
+    cube.rotation.x += 0.01;  // Rotate cube on X-axis
+    cube.rotation.y += 0.01;  // Rotate cube on Y-axis
+
+    renderer.render(scene, camera);  // Render the scene from the camera's perspective
+}
+
+animate();  // Start the animation loop
 
