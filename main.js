@@ -86,3 +86,30 @@ function animate() {
   renderer.render(scene, camera);
 }
 animate();
+// Basic Building (replace with your model later)
+const buildingGeometry = new THREE.BoxGeometry(5, 10, 5);
+const buildingMaterial = new THREE.MeshStandardMaterial({ color: 0x8b4513 }); // Brown color
+const building = new THREE.Mesh(buildingGeometry, buildingMaterial);
+building.position.set(10, 5, 0);
+scene.add(building);
+
+// You can create more buildings by adjusting position and geometry, or load models for more realism.
+// Basic Trailer (box-shaped for now)
+const trailerGeometry = new THREE.BoxGeometry(6, 3, 3);
+const trailerMaterial = new THREE.MeshStandardMaterial({ color: 0x696969 }); // Gray for rundown look
+const trailer = new THREE.Mesh(trailerGeometry, trailerMaterial);
+trailer.position.set(0, 1.5, 10);
+scene.add(trailer);
+
+// To add furniture, you can later load smaller models (e.g., chairs, tables, etc.) and place them inside the trailers.
+// Skybox (to create atmosphere)
+const skyTexture = new THREE.TextureLoader().load('assets/textures/sky.jpg');
+scene.background = skyTexture;
+
+// Lighting
+const ambientLight = new THREE.AmbientLight(0x404040); // Soft light
+scene.add(ambientLight);
+
+const directionalLight = new THREE.DirectionalLight(0xffffff, 1); // Main light source
+directionalLight.position.set(10, 10, 10);
+scene.add(directionalLight);
